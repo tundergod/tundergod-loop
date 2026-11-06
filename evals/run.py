@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Layer 2: component-level scenario evals for the easy-loop skill.
+"""Layer 2: component-level scenario evals for the tundergod-loop skill.
 
 Each case in cases/*.toml injects exactly what that role would see at runtime
 (role file + guideline + envelope + scenario fixture) into a fresh model call,
@@ -33,11 +33,11 @@ except ModuleNotFoundError:
         sys.exit("needs Python >= 3.11 (tomllib) or `pip install tomli`")
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILL = ROOT / "easy-loop"
+SKILL = ROOT / "tundergod-loop"
 CASES = Path(__file__).resolve().parent / "cases"
 
 HEADER = (
-    "You are simulating one role of the `easy-loop` agent skill for testing. "
+    "You are simulating one role of the `tundergod-loop` agent skill for testing. "
     "This is a pure paper simulation: do NOT use any tools, do NOT write files, "
     "do NOT spawn agents. The files below are exactly what this role has in "
     "context at runtime — rely on nothing else. Answer concisely in plain text.\n"
@@ -45,7 +45,7 @@ HEADER = (
 
 # For cases with no injected files (e.g. triggering): a neutral header, so the
 # host's real environment (its actual skill/tool registry) doesn't contaminate
-# the judgment and the easy-loop name doesn't bias it.
+# the judgment and the tundergod-loop name doesn't bias it.
 NEUTRAL_HEADER = (
     "This is a text-classification exercise for testing skill descriptions. "
     "Judge ONLY the text provided below; ignore whatever skills or tools are "

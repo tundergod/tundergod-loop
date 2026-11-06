@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Layer 1: mechanical consistency checks for the easy-loop skill.
+"""Layer 1: mechanical consistency checks for the tundergod-loop skill.
 
 No LLM, no dependencies (stdlib only, Python >= 3.9). Run on every edit:
 
@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILL = ROOT / "easy-loop"
+SKILL = ROOT / "tundergod-loop"
 FINDINGS: list[str] = []
 
 

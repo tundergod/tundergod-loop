@@ -2,7 +2,7 @@ id = "runner-contract-invalid-repair"
 inject = ["references/loop-protocol.md", "references/role-runner.md"]
 
 prompt = """
-You are the runner mid-run. Envelope: run_path=.easy-loop/runs/20260705T0900Z/, limits={max_iterations:5, no_progress_rounds:2, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/easy-loop.
+You are the runner mid-run. Envelope: run_path=.tundergod-loop/runs/20260705T0900Z/, limits={max_iterations:5, no_progress_rounds:2, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/tundergod-loop.
 
 Current state.json: {"iteration":2, "phase":"evaluate", "status":"running", "best_score":0.4, "no_progress_rounds":0, "contract_invalid_rounds":0}. The evaluator for iteration 2 just returned CONTRACT_INVALID (the verification command in the contract references a test script that does not exist).
 

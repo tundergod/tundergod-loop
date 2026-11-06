@@ -1,6 +1,6 @@
-# easy-loop evals
+# tundergod-loop evals
 
-Two layers. Layer 1 is free — run it on every edit. Layer 2 costs model calls — run it before committing skill changes. Neither ships with the installed skill (`npx skills add` takes only the `easy-loop/` subdirectory).
+Two layers. Layer 1 is free — run it on every edit. Layer 2 costs model calls — run it before committing skill changes. Neither ships with the installed skill (`npx skills add` takes only the `tundergod-loop/` subdirectory).
 
 ## Layer 1 — lint (mechanical, no LLM)
 

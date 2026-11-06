@@ -2,7 +2,7 @@ id = "runner-staged-milestone-sequencing"
 inject = ["references/loop-protocol.md", "references/role-runner.md"]
 
 prompt = """
-You are the runner mid-run on a contract whose `## Acceptance Checklist` begins with `Staged: yes` and groups items under `### Milestone 1..5`. Envelope: run_path=.easy-loop/runs/20260705T0900Z/, limits={max_iterations:8, no_progress_rounds:3, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/easy-loop.
+You are the runner mid-run on a contract whose `## Acceptance Checklist` begins with `Staged: yes` and groups items under `### Milestone 1..5`. Envelope: run_path=.tundergod-loop/runs/20260705T0900Z/, limits={max_iterations:8, no_progress_rounds:3, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/tundergod-loop.
 
 Current state.json: {"iteration":3, "phase":"generate", "status":"running", "best_score":0.4, "no_progress_rounds":0, "contract_invalid_rounds":0}. The last eval.json shows every item under Milestone 1 and Milestone 2 passing, Milestones 3-5 not yet passing.
 

@@ -2,7 +2,7 @@ id = "runner-resume-after-generate"
 inject = ["references/loop-protocol.md", "references/role-runner.md"]
 
 prompt = """
-You are the runner, relaunched after a crash. Envelope: run_path=.easy-loop/runs/20260705T0900Z/, limits={max_iterations:5, no_progress_rounds:2, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/easy-loop.
+You are the runner, relaunched after a crash. Envelope: run_path=.tundergod-loop/runs/20260705T0900Z/, limits={max_iterations:5, no_progress_rounds:2, contract_invalid_rounds:2}, model_policy=off, report=markdown, skill_path=/skills/tundergod-loop.
 
 On disk: state.json = {"iteration":2, "phase":"generate", "status":"running", "best_score":0.4, "no_progress_rounds":1}. Last log.jsonl line: {"iter":2,"phase":"generate","actor":"generator","result":"IMPLEMENTED"}.
 

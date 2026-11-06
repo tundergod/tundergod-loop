@@ -9,7 +9,7 @@ Contents: Run Directory · State Schema · Write Invariant · Ratchet and Revert
 One directory per run. Application code is edited in place in the repo (within the contract's allowed paths); only loop bookkeeping is confined to the run directory.
 
 ```text
-.easy-loop/runs/<run-id>/
+.tundergod-loop/runs/<run-id>/
   spec.md          # goal, acceptance criteria, platform grounding, and the baseline verification result (input)
   contract.md      # binding, user-approved checklist plus verification commands/artifacts
   state.json       # the snapshot — small, rewritten atomically each phase
@@ -21,7 +21,7 @@ One directory per run. Application code is edited in place in the repo (within t
     plan.md  patch.diff  eval.json
 ```
 
-Use a sortable `<run-id>` (a timestamp/ULID) so "latest" needs no separate pointer file. The **manager** creates the directory and writes `spec.md`, `contract.md`, the initial `state.json`, and an empty `log.jsonl`. The **runner** creates each `iterations/<NNNN>/` before spawning that round's generator. Contract drafts made during negotiation live at `.easy-loop/drafts/contract-<timestamp>.md` until approved and copied in.
+Use a sortable `<run-id>` (a timestamp/ULID) so "latest" needs no separate pointer file. The **manager** creates the directory and writes `spec.md`, `contract.md`, the initial `state.json`, and an empty `log.jsonl`. The **runner** creates each `iterations/<NNNN>/` before spawning that round's generator. Contract drafts made during negotiation live at `.tundergod-loop/drafts/contract-<timestamp>.md` until approved and copied in.
 
 ## State Schema
 
@@ -77,7 +77,7 @@ Revert restores the allowed-path files from `iterations/<NNNN>/snapshot/` (a pla
 
 ## Resume
 
-1. Scan `.easy-loop/runs/*/state.json`.
+1. Scan `.tundergod-loop/runs/*/state.json`.
 2. A run with `status: running` or `awaiting_approval` is in progress; if several, take the latest `run_id`.
 3. Reconcile: read the last `log.jsonl` line. If it records a *completed* phase, the next phase to run is: after `generate` → recompute `patch.diff` from the working tree vs `snapshot/`, then `evaluate`; after `evaluate` with `PASS` → finalize `status: done` (do not re-run); after `evaluate` with `FAIL` → the ratchet has **not** run yet, so apply it against the pre-ratchet `best_score` in `state.json` — keep the tree if the logged score beats it, else revert from this iteration's `snapshot/` — append the `ratchet` line, rewrite `state.json` from it, then `generate` the next iteration; after a `ratchet` line → rewrite `state.json` from that line (idempotent whether or not the pre-crash run reached the state rewrite) and make the tree match it (`REVERT` → restore this iteration's `snapshot/`; `KEEP` → leave it), then `generate` the next iteration; after `evaluate` with `CONTRACT_INVALID` → apply the `CONTRACT_INVALID` line of Status Routing; after `plan` (a contract repair) → re-run `evaluate` of the same iteration.
 4. Before re-running an *interrupted* `generate` (the last line predates its `IMPLEMENTED`), restore the working tree from that iteration's `snapshot/` so the phase is idempotent w.r.t. repo source (artifacts under `iterations/<NNNN>/` overwrite cleanly on their own). Starting the *next* iteration's `generate` takes a fresh snapshot instead (runner loop step 1) — do not restore a prior snapshot there, or a kept improvement is lost.
@@ -97,7 +97,7 @@ Every subagent starts with empty context — never rely on shared history. Spawn
 role:            runner | planner | generator | evaluator
 skill_path:      absolute path to this skill's directory
 goal:            the user's goal and clarified requirements (planner)
-run_path:        .easy-loop/runs/<run-id>/   (empty during contract negotiation)
+run_path:        .tundergod-loop/runs/<run-id>/   (empty during contract negotiation)
 contract_path:   .../contract.md   (the draft path during negotiation)
 allowed_paths:   from contract.md `## Scope`
 forbidden_ops:   the protocol's forbidden list plus contract.md `## Scope` additions
